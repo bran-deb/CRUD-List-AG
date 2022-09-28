@@ -1,6 +1,6 @@
 package pooInterfaces.repository;
 
-public interface OrderPageableCrudRepository
+public interface ClienteListDAO
         extends OrderRepository,
         PageableRepository,
         CrudRepository, CountableRepository {

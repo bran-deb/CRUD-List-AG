@@ -5,11 +5,11 @@ import pooInterfaces.modelo.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteListRepository implements ClienteListDAO {
+public class ClienteListDAOImp implements ClienteListDAO {
 
     private final List<Cliente> dataSource;
 
-    public ClienteListRepository() {
+    public ClienteListDAOImp() {
         this.dataSource = new ArrayList<>();
     }
 
