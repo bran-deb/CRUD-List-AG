@@ -5,7 +5,7 @@ import pooInterfaces.modelo.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteListRepository implements OrderPageableCrudRepository {
+public class ClienteListRepository implements ClienteListDAO {
 
     private final List<Cliente> dataSource;
 
