@@ -1,19 +1,17 @@
 package pooInterfaces.repository;
-
-import pooInterfaces.modelo.Cliente;
-
+//1
 import java.util.List;
 
 //protocolos (métodos de la interfase)
-public interface CrudRepository {
+public interface CrudRepository<T> {
 
-    List<Cliente> listar();
+    List<T> listar();
 
-    Cliente getClientByID(Integer id);
+    T getByID(Integer id);
 
-    void create(Cliente cliente);
+    void create(T t);
 
-    void update(Cliente cliente);
+    void update(T t);
 
     void delete(Integer id);
 }

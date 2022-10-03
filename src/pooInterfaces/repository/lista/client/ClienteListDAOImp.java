@@ -1,11 +1,14 @@
-package pooInterfaces.repository;
+package pooInterfaces.repository.lista.client;
+//4
 
 import pooInterfaces.modelo.Cliente;
+import pooInterfaces.repository.Direccion;
+import pooInterfaces.repository.lista.client.ClientListDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteListDAOImp implements ClienteListDAO {
+public class ClienteListDAOImp implements ClientListDAO {
 
     private final List<Cliente> dataSource;
 
@@ -49,7 +52,7 @@ public class ClienteListDAOImp implements ClienteListDAO {
     }
 
     @Override
-    public Cliente getClientByID(Integer id) {
+    public Cliente getByID(Integer id) {
         Cliente clientById = null;
         for (Cliente cliente : dataSource) {
             if (cliente.getId() != null && cliente.getId().equals(id)) {
@@ -67,14 +70,14 @@ public class ClienteListDAOImp implements ClienteListDAO {
 
     @Override
     public void update(Cliente cliente) {
-        Cliente client = this.getClientByID(cliente.getId());
+        Cliente client = this.getByID(cliente.getId());
         client.setNombre(cliente.getNombre());
         client.setApellido(cliente.getApellido());
     }
 
     @Override
     public void delete(Integer id) {
-        Cliente client = this.getClientByID(id);
+        Cliente client = this.getByID(id);
         this.dataSource.remove(client);
     }
 

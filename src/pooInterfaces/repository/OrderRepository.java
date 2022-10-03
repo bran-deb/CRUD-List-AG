@@ -4,7 +4,7 @@ import pooInterfaces.modelo.Cliente;
 
 import java.util.List;
 
-public interface OrderRepository {
+public interface OrderRepository<T> {
 
-    List<Cliente> listar(String campo,Direccion direccion);
+    List<T> listar(String campo,Direccion direccion);
 }

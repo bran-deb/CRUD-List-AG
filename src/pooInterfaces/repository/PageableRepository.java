@@ -4,7 +4,7 @@ import pooInterfaces.modelo.Cliente;
 
 import java.util.List;
 
-public interface PageableRepository {
+public interface PageableRepository<T> {
 
-    List<Cliente> listar(int desde,int hasta);
+    List<T> listar(int desde,int hasta);
 }

@@ -2,20 +2,15 @@ package pooInterfaces.modelo;
 
 import java.util.Objects;
 
-public class Cliente {
-    private static int ultimoId;
-    private Integer id;
+public class Cliente extends BaseEntity {
     private String nombre;
     private String apellido;
 
-    public Cliente() {
-        this.id = ++Cliente.ultimoId;
-    }
-
     public Cliente(String nombre, String apellido) {
-        this();
+        super();
         this.nombre = nombre;
         this.apellido = apellido;
+        //obtiene id de la clase padre
     }
 
     public Integer getId() {
@@ -47,18 +42,5 @@ public class Cliente {
         return "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
-        return Objects.equals(id, cliente.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }

@@ -1,18 +1,18 @@
-package pooInterfaces;
-
+package pooInterfaces.abstractas;
+//5
+import pooInterfaces.abstractas.lista.ClienteList;
 import pooInterfaces.modelo.Cliente;
-import pooInterfaces.repository.ClienteListDAOImp;
-import pooInterfaces.repository.ClienteListDAO;
+import pooInterfaces.repository.CrudMergeRepository;
 
 import java.util.List;
 
 import static pooInterfaces.repository.Direccion.ASC;
 import static pooInterfaces.repository.Direccion.DESC;
 
-public class TestRepository {
+public class TestAbstractClient {
     public static void main(String[] args) {
 
-        ClienteListDAO repo = new ClienteListDAOImp();
+        CrudMergeRepository<Cliente> repo = new ClienteList();
         repo.create(new Cliente("Jano", "Perez"));
         repo.create(new Cliente("Bea", "Gonzales"));
         repo.create(new Cliente("Luci", "Martinez"));
@@ -49,6 +49,5 @@ public class TestRepository {
 
         System.out.println("=======    Total     ========");
         System.out.println("Total registro" + repo.count());
-
     }
 }
