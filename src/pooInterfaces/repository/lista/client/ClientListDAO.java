@@ -9,21 +9,21 @@ import java.util.List;
 
 public interface ClientListDAO extends CrudMergeRepository<Cliente> {
 
-    public List<Cliente> listar();
+    List<Cliente> listar();
 
-    public List<Cliente> listar(int desde, int hasta);
+    List<Cliente> listar(int desde, int hasta);
 
-    public List<Cliente> listar(String campo, Direccion direccion);
+    List<Cliente> listar(String campo, Direccion direccion);
 
-    public Cliente getByID(Integer id);
+    Cliente getByID(Integer id);
 
-    public void create(Cliente cliente);
+    void create(Cliente cliente);
 
-    public void update(Cliente cliente);
+    void update(Cliente cliente);
 
-    public void delete(Integer id);
+    void delete(Integer id);
 
-    public int count();
+    int count();
 }
 
 
