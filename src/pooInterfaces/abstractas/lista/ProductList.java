@@ -1,6 +1,7 @@
 package pooInterfaces.abstractas.lista;
 
 import pooInterfaces.abstractas.GenericListDAO;
+import pooInterfaces.exceptions.checked.ReadDataAccessException;
 import pooInterfaces.modelo.Producto;
 import pooInterfaces.repository.Direccion;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public class ProductList extends GenericListDAO<Producto> {
 
     @Override
-    public void update(Producto producto) {
+    public void update(Producto producto) throws ReadDataAccessException {
         Producto product = getByID(producto.getId());
         product.setDescripcion(producto.getDescripcion());
         product.setPrecio(producto.getPrecio());

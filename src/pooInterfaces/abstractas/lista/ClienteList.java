@@ -2,6 +2,7 @@ package pooInterfaces.abstractas.lista;
 
 
 import pooInterfaces.abstractas.GenericListDAO;
+import pooInterfaces.exceptions.checked.ReadDataAccessException;
 import pooInterfaces.modelo.Cliente;
 import pooInterfaces.repository.Direccion;
 
@@ -34,7 +35,7 @@ public class ClienteList extends GenericListDAO<Cliente> {
         return listaOrdenada;
     }
 
-    public void update(Cliente cliente) {
+    public void update(Cliente cliente) throws ReadDataAccessException {
         Cliente client = this.getByID(cliente.getId());
         client.setNombre(cliente.getNombre());
         client.setApellido(cliente.getApellido());
