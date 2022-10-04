@@ -1,8 +1,9 @@
 package pooInterfaces.abstractas;
 
 
+import pooInterfaces.exceptions.checked.ReadDataAccessException;
+import pooInterfaces.exceptions.checked.WriteDataAccessException;
 import pooInterfaces.modelo.BaseEntity;
-import pooInterfaces.repository.CrudMergeRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +18,20 @@ public abstract class GenericListDAO<T extends BaseEntity> implements CrudMergeR
     }
 
     @Override
-    public T getByID(Integer id) {
+    public T getByID(Integer id) throws ReadDataAccessException {
+        if (id == null || id <= 0) {
+            throw new ReadDataAccessException("Id invalido debe ser <0");
+        }
         T clientById = null;
         for (T cliente : dataSource) {
             if (cliente.getId() != null && cliente.getId().equals(id)) {
                 clientById = cliente;
                 break;
             }
+        }
+
+        if (clientById == null) {
+            throw new ReadDataAccessException("No existe el registro con id: " + id);
         }
         return clientById;
     }
@@ -39,12 +47,15 @@ public abstract class GenericListDAO<T extends BaseEntity> implements CrudMergeR
     }
 
     @Override
-    public void create(T t) {
+    public void create(T t) throws WriteDataAccessException {
+        if (t == null) {
+            throw new WriteDataAccessException("Error al insertar un objeto");
+        }
         this.dataSource.add(t);
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Integer id) throws ReadDataAccessException {
         T client = this.getByID(id);
         this.dataSource.remove(client);
     }

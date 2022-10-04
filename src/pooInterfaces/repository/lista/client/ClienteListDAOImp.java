@@ -1,9 +1,10 @@
 package pooInterfaces.repository.lista.client;
 //4
 
+import pooInterfaces.exceptions.unchecked.ReadDataAccessException;
+import pooInterfaces.exceptions.unchecked.WriteDataAccessException;
 import pooInterfaces.modelo.Cliente;
 import pooInterfaces.repository.Direccion;
-import pooInterfaces.repository.lista.client.ClientListDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,9 @@ public class ClienteListDAOImp implements ClientListDAO {
 
     @Override
     public Cliente getByID(Integer id) {
+        if (id == null) {
+            throw new ReadDataAccessException("Id invalido debe ser: <0");
+        }
         Cliente clientById = null;
         for (Cliente cliente : dataSource) {
             if (cliente.getId() != null && cliente.getId().equals(id)) {
@@ -60,11 +64,17 @@ public class ClienteListDAOImp implements ClientListDAO {
                 break;
             }
         }
+        if (clientById == null) {
+            throw new ReadDataAccessException("No existe el cliente con id: " + id);
+        }
         return clientById;
     }
 
     @Override
     public void create(Cliente cliente) {
+        if (cliente == null) {
+            throw new WriteDataAccessException("Error al insertar un cliente");
+        }
         this.dataSource.add(cliente);
     }
 

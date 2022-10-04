@@ -1,5 +1,7 @@
 package pooInterfaces.repository.lista.product;
 
+import pooInterfaces.exceptions.unchecked.ReadDataAccessException;
+import pooInterfaces.exceptions.unchecked.WriteDataAccessException;
 import pooInterfaces.modelo.Producto;
 import pooInterfaces.repository.Direccion;
 
@@ -51,6 +53,9 @@ public class ProductListDAOImp implements ProductListDAO {
 
     @Override
     public Producto getByID(Integer id) {
+        if (id == null) {
+            throw new ReadDataAccessException("Id invalido debe ser: <0");
+        }
         Producto productById = null;
         for (Producto producto : dataSource) {
             if (producto.getId() != null && producto.getId().equals(id)) {
@@ -58,11 +63,17 @@ public class ProductListDAOImp implements ProductListDAO {
                 break;
             }
         }
+        if (productById == null) {
+            throw new ReadDataAccessException("No existe el producto con id: " + id);
+        }
         return productById;
     }
 
     @Override
     public void create(Producto producto) {
+        if (producto == null) {
+            throw new WriteDataAccessException("Error al insertar un producto");
+        }
         this.dataSource.add(producto);
     }
 
