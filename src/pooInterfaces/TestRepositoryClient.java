@@ -21,6 +21,11 @@ public class TestRepositoryClient {
             repo.create(new Cliente("Bea", "Gonzales"));
             repo.create(new Cliente("Luci", "Martinez"));
             repo.create(new Cliente("Andres", "Guzman"));
+
+            Cliente andres = new Cliente("Andres", "Illanes");
+            repo.create(andres);
+            repo.create(andres);
+
             List<Cliente> clientes = repo.listar();
 //        clientes.forEach(cliente-> System.out.println(cliente));
             clientes.forEach(System.out::println);
@@ -54,7 +59,6 @@ public class TestRepositoryClient {
             System.out.println("=======    Total     ========");
             System.out.println("Total registro" + repo.count());
 
-            repo.create(null);
         } catch (ReadDataAccessException | WriteDataAccessException e) {
             e.printStackTrace();
         }

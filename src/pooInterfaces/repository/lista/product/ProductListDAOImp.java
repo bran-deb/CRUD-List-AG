@@ -1,5 +1,6 @@
 package pooInterfaces.repository.lista.product;
 
+import pooInterfaces.exceptions.unchecked.DuplicateRecordDataAccessException;
 import pooInterfaces.exceptions.unchecked.ReadDataAccessException;
 import pooInterfaces.exceptions.unchecked.WriteDataAccessException;
 import pooInterfaces.modelo.Producto;
@@ -73,6 +74,9 @@ public class ProductListDAOImp implements ProductListDAO {
     public void create(Producto producto) {
         if (producto == null) {
             throw new WriteDataAccessException("Error al insertar un producto");
+        }
+        if (dataSource.contains(producto)) {
+            throw new DuplicateRecordDataAccessException("Error, el producto con id: " + producto.getId() + " ya existe");
         }
         this.dataSource.add(producto);
     }

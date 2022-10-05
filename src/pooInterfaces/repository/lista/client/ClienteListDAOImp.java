@@ -1,6 +1,7 @@
 package pooInterfaces.repository.lista.client;
 //4
 
+import pooInterfaces.exceptions.unchecked.DuplicateRecordDataAccessException;
 import pooInterfaces.exceptions.unchecked.ReadDataAccessException;
 import pooInterfaces.exceptions.unchecked.WriteDataAccessException;
 import pooInterfaces.modelo.Cliente;
@@ -74,6 +75,9 @@ public class ClienteListDAOImp implements ClientListDAO {
     public void create(Cliente cliente) {
         if (cliente == null) {
             throw new WriteDataAccessException("Error al insertar un cliente");
+        }
+        if (this.dataSource.contains(cliente)) {
+            throw new DuplicateRecordDataAccessException("Error, el cliente con id: " + cliente.getId() + " ya existe");
         }
         this.dataSource.add(cliente);
     }
