@@ -1,6 +1,7 @@
 package pooInterfaces.abstractas;
 
 
+import pooInterfaces.exceptions.checked.DuplicateRecordDataAccessException;
 import pooInterfaces.exceptions.checked.ReadDataAccessException;
 import pooInterfaces.exceptions.checked.WriteDataAccessException;
 import pooInterfaces.modelo.BaseEntity;
@@ -20,7 +21,7 @@ public abstract class GenericListDAO<T extends BaseEntity> implements CrudMergeR
     @Override
     public T getByID(Integer id) throws ReadDataAccessException {
         if (id == null || id <= 0) {
-            throw new ReadDataAccessException("Id invalido debe ser <0");
+            throw new ReadDataAccessException("Id invalido debe ser >0");
         }
         T clientById = null;
         for (T cliente : dataSource) {
@@ -50,6 +51,9 @@ public abstract class GenericListDAO<T extends BaseEntity> implements CrudMergeR
     public void create(T t) throws WriteDataAccessException {
         if (t == null) {
             throw new WriteDataAccessException("Error al insertar un objeto");
+        }
+        if (this.dataSource.contains(t)){
+            throw new DuplicateRecordDataAccessException("Error, objeto con id: "+t.getId()+" ya existe");
         }
         this.dataSource.add(t);
     }
